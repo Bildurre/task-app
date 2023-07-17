@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('tasks', [
+    'tasks' => Task::all()
+  ]);
 });
+
+Route::get('tasks/{task}', function ($slug) {
+  return view('task', [
+    'task' => Task::find($slug)
+  ]);
+})->where('task', '[A-z_\-]+');

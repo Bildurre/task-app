@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' href='/app.css'>
-  <title>Task-App</title>
-</head>
-<body>
+<x-layout>
   <h1>MY TASKS</h1>
-  <?php foreach ($tasks as $task) : ?>
+  @foreach ($tasks as $task)
     <article>
       <h2>
-        <a href="/tasks/<?= $task->slug; ?>">
-          <?= $task->title; ?>
-  </a>        
+        <a href="/tasks/{{ $task->id }}">
+          {{ $task->title }}
+        </a>        
       </h2>
       <div>
-        <?= $task->excerpt; ?>
+        {{ $task->owner_mail }}
       </div>
     </article>
-  <?php endforeach; ?>
-</body>
-</html>
+  @endforeach
+</x-layout>

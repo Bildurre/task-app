@@ -22,8 +22,8 @@ Route::get('/', function () {
   ]);
 });
 
-Route::get('tasks/{task}', function ($slug) {
+Route::get('tasks/{task}', function (Task $task) {
   return view('task', [
-    'task' => Task::find($slug)
+    'task' => Task::findOrFail($id)
   ]);
-})->where('task', '[A-z_\-]+');
+})/*->where('task', '[A-z_\-]+')*/;
